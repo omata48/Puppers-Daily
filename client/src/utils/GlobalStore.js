@@ -1,7 +1,12 @@
 import React, { createContext, useReducer, useContext } from "react";
 import { AUTH_SET_LOGGED_OUT, AUTH_SET_LOGGED_IN } from "./actions";
 
-const StoreContext = createContext();
+const StoreContext = createContext({
+    userLoggedIn: false,
+    email: "",
+    userName: "",
+    petInformation: [{}]
+});
 const { Provider } = StoreContext;
 
 // This is a PURE function that takes in an action and creates the next state
@@ -12,13 +17,17 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 userLoggedIn: true,
-                email: action.data.email
+                email: action.data.email,
+                userName: action.data.userName,
+                petInformation: [{}]
             }
         case AUTH_SET_LOGGED_OUT:
             return {
                 ...state,
                 userLoggedIn: false,
-                email: ""
+                email: "",
+                userName: "",
+                petInformation: []
             }
         default:
             return state;
@@ -30,7 +39,9 @@ const StoreProvider = ({value, ...props}) => {
     // What the react app view model starts as
     const initialState = value || {
         userLoggedIn: false,
-        email: ""
+        email: "",
+        userName: "",
+        petInformation: []
     };
     const [state, dispatch] = useReducer(reducer, initialState)
     window.dispatch = dispatch;

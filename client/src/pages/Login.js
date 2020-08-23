@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react"
-import { Link } from "react-router-dom";
+import { Container, Row, Col, Form, Alert, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import API from "../utils/API";
 import { AUTH_SET_LOGGED_IN } from "../utils/actions";
 import { useStoreContext } from '../utils/GlobalStore';
@@ -8,23 +9,25 @@ function Login() {
     const [showError, setShowError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
-    const emailRef = useRef();
+    const usernameRef = useRef();
     const passwordRef = useRef();
     const [, dispatch] = useStoreContext();
 
     const handleLogin = (event) => {
         event.preventDefault();
         const loginData = {
-            email: emailRef.current.value,
+            username: usernameRef.current.value,
             password: passwordRef.current.value
         };
         API.login(loginData).then(response => {
             setShowError(false);
-            const { email } = response.data;
+            const { email, username } = response.data;
+            console.log(response.data)
             dispatch({
                 type: AUTH_SET_LOGGED_IN,
                 data: {
-                    email
+                    email,
+                    username
                 }
             });
         }).catch(err => {
@@ -34,30 +37,36 @@ function Login() {
     }
 
     return <div>
-        <div className="container">
-            <div className="row">
-                <div className="col-md-6 col-md-offset-3">
+        <Container>
+            <Row>
+                <Col md={{span: 6, offset:3}} className='pt-5'>
                     <h2>Login</h2>
-                    <form className="signup" onSubmit={handleLogin}>
-                        <div className="form-group">
-                            <label htmlFor="exampleInputEmail1">Email address</label>
-                            <input type="email" className="form-control" placeholder="Email" ref={emailRef} />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="exampleInputPassword1">Password</label>
-                            <input type="password" className="form-control" placeholder="Password" ref={passwordRef} />
-                        </div>
-                        <div style={{ "display": showError ? "block" : "none" }} id="alert" className="alert alert-danger" role="alert">
+                    <Form className="signup" onSubmit={handleLogin}>
+                        <Form.Group>
+                            <Form.Label htmlFor="exampleInputEmail1">Username</Form.Label>
+                            <Form.Control type="text" className="form-control" placeholder="Username" ref={usernameRef} />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label htmlFor="exampleInputPassword1">Password</Form.Label>
+                            <Form.Control type="password" className="form-control" placeholder="Password" ref={passwordRef} />
+                        </Form.Group>
+                        <Alert style={{ "display": showError ? "block" : "none" }} id="alert" className="alert alert-danger" role="alert">
                             <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                             <span className="sr-only">Error:</span> <span className="msg">{errorMessage}</span>
-                        </div>
-                        <button type="submit" className="btn btn-default">Login</button>
-                    </form>
+                        </Alert>
+                        <Button type="submit" variant='outline-primary'>Login</Button>
+                    </Form>
                     <br />
-                    <p>Or Sign up  <Link to="/signup">here</Link></p>
-                </div>
-            </div>
-        </div>
+                    <Link to='/signup'>
+                        <Button variant='outline-secondary' className='mb-2' size='sm'>Or sign up here</Button>
+                    </Link>
+                    <br />                    
+                    <Link to='/home'>
+                        <Button variant='outline-info' size='sm'> {'<<'} Back to main page</Button>
+                    </Link>
+                </Col>
+            </Row>
+        </Container>
     </div>
 }
 
