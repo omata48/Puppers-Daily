@@ -2,10 +2,11 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import './App.css';
 import Navbar from './components/Nav';
+import Home from './pages/Home';
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Members from "./pages/Members";
-import Home from './pages/Home';
+import NewPet from './pages/NewPet';
 import { useStoreContext } from './utils/GlobalStore';
 import API from './utils/API';
 import { AUTH_SET_LOGGED_IN, AUTH_SET_LOGGED_OUT } from "./utils/actions";
@@ -69,6 +70,7 @@ function App() {
                                     <Redirect to="/members" />
                                 </Route>
                                 <Route exact path="/members" component={Members} />
+                                <Route exact path="/members/add" component={NewPet} />
                             </>
                             )
                     }

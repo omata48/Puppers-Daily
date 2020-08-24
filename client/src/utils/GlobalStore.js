@@ -4,7 +4,7 @@ import { AUTH_SET_LOGGED_OUT, AUTH_SET_LOGGED_IN } from "./actions";
 const StoreContext = createContext({
     userLoggedIn: false,
     email: "",
-    userName: "",
+    username: "",
     petInformation: [{}]
 });
 const { Provider } = StoreContext;
@@ -18,7 +18,7 @@ const reducer = (state, action) => {
                 ...state,
                 userLoggedIn: true,
                 email: action.data.email,
-                userName: action.data.userName,
+                username: action.data.username,
                 petInformation: [{}]
             }
         case AUTH_SET_LOGGED_OUT:
@@ -26,7 +26,7 @@ const reducer = (state, action) => {
                 ...state,
                 userLoggedIn: false,
                 email: "",
-                userName: "",
+                username: "",
                 petInformation: []
             }
         default:

@@ -21,6 +21,7 @@ function Login() {
         };
         API.login(loginData).then(response => {
             setShowError(false);
+            console.log(response.data);
             const { email, username } = response.data;
             console.log(response.data)
             dispatch({

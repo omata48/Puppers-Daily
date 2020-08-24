@@ -2,16 +2,16 @@ import React from 'react';
 import { Jumbotron, Container, } from 'react-bootstrap';
 
 function Hero(props){
-    const { title, subtitle, URL } = props
+    const { color, title, subtitle, URL, height } = props
 
     return(
         <Jumbotron 
         style={{
-            color:'blue',
+            color:color || 'white',
             backgroundImage:'url('+URL+')',
             backgroundPosition:'center',
             backgroundSize:'cover',
-            height:'50vh'
+            height: height || '75vh'
         }} 
         >
             <Container>

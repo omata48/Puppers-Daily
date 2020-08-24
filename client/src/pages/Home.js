@@ -6,7 +6,11 @@ function Home() {
 
     return (
         <>
-        <Hero title="Puppy Time" subtitle="Hello" URL="https://via.placeholder.com/400x300" />
+        <Hero title="Puppy Time" 
+            subtitle="Hello" 
+            URL="https://placedog.net/640?random" 
+            height={'75vh'} 
+        />
         <Container>
             <Row className='justify-content-md-center'>
                 <Col sm={8}>

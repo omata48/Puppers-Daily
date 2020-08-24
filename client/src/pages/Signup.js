@@ -30,7 +30,7 @@ function Signup() {
                     username
                 }
             });
-        }).catch(err => {
+        }).catch(() => {
             setShowError(true);
             setErrorMessage("An error occurred while signing up");
         })

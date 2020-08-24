@@ -19,5 +19,8 @@ export default {
     },
     getPets: () => {
         return axios.get("/api/pet_data");
+    },
+    getBreeds:(query) => {
+        return axios.get('/api/searchBreed/'+query)
     }
 }
