@@ -17,6 +17,18 @@ module.exports = function(sequelize, DataTypes) {
                     msg: 'Breed cannot be null',
                 },
             },
+        },
+        sex: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        age: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+        },
+        vetRecords: {
+            type: DataTypes.STRING,
+            allowNull: true,
         }
     });
 
