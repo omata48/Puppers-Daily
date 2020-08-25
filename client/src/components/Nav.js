@@ -11,7 +11,7 @@ function NavbarMod(props) {
     const {logout} = props
 
     return (
-        <Navbar  >
+        <Navbar className='mt-3' >
             {!state.userLoggedIn ? (
                 // if the user is Logged out
                 <>
