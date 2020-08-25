@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Members from "./pages/Members";
 import NewPet from './pages/NewPet';
+import Footer from './components/Footer';
 import { useStoreContext } from './utils/GlobalStore';
 import API from './utils/API';
 import { AUTH_SET_LOGGED_IN, AUTH_SET_LOGGED_OUT } from "./utils/actions";
@@ -21,13 +22,17 @@ function App() {
     useEffect(() => {
         // Try getting our user-data, if the user is logged in, we will update our GlobalStore to refelct that
         API.checkUserInfo().then(response => {
-            const { email } = response.data;
-            dispatch({
-                type: AUTH_SET_LOGGED_IN,
-                data: {
-                    email
-                }
-            })
+            const { email, username } = response.data;
+            API.getPets().then(pets => {
+                dispatch({
+                    type: AUTH_SET_LOGGED_IN,
+                    data: {
+                        email:email,
+                        username:username,
+                        petInformation:pets.data
+                    }
+                })
+            });
         }).catch(err => {
             // Not able to be logged in, leave us logged out
             // console.log("error", err);
@@ -79,7 +84,9 @@ function App() {
                         <Redirect to="/" />
                     </Route>
                 </Switch>
-
+                <Footer>
+                    © 2020 Omar Mata
+                </Footer>
             </div>
         </Router>
     );

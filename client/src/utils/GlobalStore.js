@@ -1,11 +1,11 @@
 import React, { createContext, useReducer, useContext } from "react";
-import { AUTH_SET_LOGGED_OUT, AUTH_SET_LOGGED_IN } from "./actions";
+import { AUTH_SET_LOGGED_OUT, AUTH_SET_LOGGED_IN, NEW_USER_PET } from "./actions";
 
 const StoreContext = createContext({
     userLoggedIn: false,
     email: "",
     username: "",
-    petInformation: [{}]
+    petInformation: []
 });
 const { Provider } = StoreContext;
 
@@ -19,7 +19,7 @@ const reducer = (state, action) => {
                 userLoggedIn: true,
                 email: action.data.email,
                 username: action.data.username,
-                petInformation: [{}]
+                petInformation: action.data.petInformation
             }
         case AUTH_SET_LOGGED_OUT:
             return {
@@ -28,6 +28,11 @@ const reducer = (state, action) => {
                 email: "",
                 username: "",
                 petInformation: []
+            }
+        case NEW_USER_PET:
+            return {
+                ...state,
+                petInformation: action.data.petInformation
             }
         default:
             return state;
@@ -40,7 +45,7 @@ const StoreProvider = ({value, ...props}) => {
     const initialState = value || {
         userLoggedIn: false,
         email: "",
-        userName: "",
+        username: "",
         petInformation: []
     };
     const [state, dispatch] = useReducer(reducer, initialState)
