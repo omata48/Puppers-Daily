@@ -23,12 +23,15 @@ function Signup() {
         };
         API.signup(signupData).then(response => {
             const { email, username } = response.data;
-            dispatch({
-                type: AUTH_SET_LOGGED_IN,
-                data: {
-                    email,
-                    username
-                }
+            API.getPets().then(pets => {
+                dispatch({
+                    type: AUTH_SET_LOGGED_IN,
+                    data: {
+                        email:email,
+                        username:username,
+                        petInformation:pets.data
+                    }
+                });
             });
         }).catch(() => {
             setShowError(true);

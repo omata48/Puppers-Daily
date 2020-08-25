@@ -21,15 +21,16 @@ function Login() {
         };
         API.login(loginData).then(response => {
             setShowError(false);
-            console.log(response.data);
             const { email, username } = response.data;
-            console.log(response.data)
-            dispatch({
-                type: AUTH_SET_LOGGED_IN,
-                data: {
-                    email,
-                    username
-                }
+            API.getPets().then(pets => {
+                dispatch({
+                    type: AUTH_SET_LOGGED_IN,
+                    data: {
+                        email:email,
+                        username:username,
+                        petInformation:pets.data
+                    }
+                });
             });
         }).catch(err => {
             setShowError(true);

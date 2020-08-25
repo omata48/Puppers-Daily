@@ -7,8 +7,8 @@ function Home() {
     return (
         <>
         <Hero title="Puppy Time" 
-            subtitle="Hello" 
-            URL="https://placedog.net/640?random" 
+            // URL="https://placedog.net/640?random" 
+            URL="https://placedog.net/640" 
             height={'75vh'} 
         />
         <Container>

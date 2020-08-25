@@ -3,9 +3,12 @@ import { Link } from 'react-router-dom';
 import { Container, Row, Col, Form, Alert, Button } from 'react-bootstrap';
 import API from '../utils/API';
 import useDebounce from "../utils/debounceHook";
+import { useStoreContext } from "../utils/GlobalStore";
+import { AUTH_SET_LOGGED_IN } from "../utils/actions";
 
 
 function NewPet(){
+    const [state,dispatch] =  useStoreContext();
     const [showError, setShowError] = useState(false);
     const [errorMessage,setErrorMessage] = useState("");
     const [breeds, setBreeds] = useState([]);
@@ -52,7 +55,16 @@ function NewPet(){
         };
         // console.log(petData);
         API.addPet(petData)
-            .then(results => console.log(results))
+            .then((petAdded) => {
+                console.log(petAdded)
+                var joined = state.petInformation.concat(petAdded)
+                dispatch({
+                    type: AUTH_SET_LOGGED_IN,
+                    data: {
+                        petInformation: joined
+                    }
+                })
+            })
             .catch(err => {
                 setShowError(true);
                 setErrorMessage(err);
