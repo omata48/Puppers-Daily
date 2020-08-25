@@ -11,7 +11,7 @@ function NavbarMod(props) {
     const {logout} = props
 
     return (
-        <Navbar className='mt-3' >
+        <Navbar bg='dark' variant='dark' className='pb-3'>
             {!state.userLoggedIn ? (
                 // if the user is Logged out
                 <>
@@ -35,9 +35,14 @@ function NavbarMod(props) {
                 // If the user is Logged In
                 <>
                     <Navbar.Brand>
-                        <b>Welcome {state.email}!</b> &nbsp;&nbsp;&nbsp;
+                        <b>Welcome {state.username}!</b> &nbsp;&nbsp;&nbsp;
                     </Navbar.Brand>
                     <Nav variant="pills" className='mr-auto'>
+                        <Nav.Item >
+                            <Link to="/home">
+                                <Nav.Link as="div">Home</Nav.Link>
+                            </Link>
+                        </Nav.Item>
                         <Nav.Item >
                             <Link to="/members">
                                 <Nav.Link as="div">Members</Nav.Link>
