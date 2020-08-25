@@ -7,13 +7,13 @@ import { Link } from "react-router-dom";
 
 function Members(){
     const [state] = useStoreContext();
-    const {username, petInformation } = state;
+    const { petInformation } = state;
 
     return <Container className='mb-3'>
     <Row className='justify-content-md-center '>
       <Col md={12}>
         <Hero URL='/images/dog_attentive.jpeg' 
-          title={'Welcome '+ username} 
+          title={'Welcome to your page'} 
           height={'50vh'}
           color='white'
         />
@@ -27,7 +27,7 @@ function Members(){
         <TabContainer id='list-group-tabs' defaultActiveKey='link0'>
           <Row className='my-4'>
             <Col sm={4}>
-              <Nav variant='pills'>
+              <Nav variant='pills' className='flex-column' defaultActiveKey='link0'>
                   {
                     petInformation.length > 0
                       ? petInformation.map((pet, key) =>

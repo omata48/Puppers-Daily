@@ -1,10 +1,9 @@
 import React, { useRef, useState, useEffect } from "react"
-import { Link } from 'react-router-dom';
 import { Container, Row, Col, Form, Alert, Button } from 'react-bootstrap';
 import API from '../utils/API';
 import useDebounce from "../utils/debounceHook";
 import { useStoreContext } from "../utils/GlobalStore";
-import { AUTH_SET_LOGGED_IN } from "../utils/actions";
+import { NEW_USER_PET } from "../utils/actions";
 
 
 function NewPet(){
@@ -59,7 +58,7 @@ function NewPet(){
                 console.log(petAdded)
                 var joined = state.petInformation.concat(petAdded)
                 dispatch({
-                    type: AUTH_SET_LOGGED_IN,
+                    type: NEW_USER_PET,
                     data: {
                         petInformation: joined
                     }
@@ -120,9 +119,9 @@ function NewPet(){
                         <Button type="submit" variant='outline-primary'>Add Dog</Button>
                     </Form>
                     <br />
-                    <Link to='/members'>
+                    <a href='/members'>
                         <Button variant='outline-info' size='sm'> {'<<'} Back to previous page</Button>
-                    </Link>
+                    </a>
                 </Col>
             </Row>
         </Container>
