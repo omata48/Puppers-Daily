@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Card, Container, Row, Col, Button, ListGroup, ListGroupItem } from 'react-bootstrap';
 import Hero from '../components/Hero';
 
@@ -43,13 +44,17 @@ function Home() {
                         </Card.Body>
                     </Card>
                 </Col>
-                <Col className='mb-3'>
-                    <Button variant='secondary' size='lg' href='/signup' block>
-                        Sign up now
-                    </Button>
-                    <Button variant='secondary' size='lg' href='/login' block>
-                        Log in here
-                    </Button>
+                <Col sm={4}>
+                    <Link to='/signup' style={{textDecoration:'none'}}>
+                        <Button className='mb-3' variant='secondary' size='lg' block>
+                            Sign up now
+                        </Button>
+                    </Link>
+                    <Link to='/login' style={{textDecoration:'none'}}>
+                        <Button className='mb-3' variant='secondary' size='lg' block>
+                            Log in here
+                        </Button>
+                    </Link>
                 </Col>
             </Row>
         </Container>

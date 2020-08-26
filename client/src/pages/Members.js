@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import { Container, Row, Col, Button, Card, Tab, TabContainer, Nav, Modal, Form, ListGroup } from 'react-bootstrap';
 import Hero from '../components/Hero'
 import { useStoreContext } from '../utils/GlobalStore';
-import TimeBlock from "../components/TimeBlock";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { Link } from "react-router-dom";
