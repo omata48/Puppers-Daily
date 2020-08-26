@@ -11,11 +11,18 @@ function Signup() {
 
     const emailRef = useRef();
     const passwordRef = useRef();
+    const passwordConfirmRef = useRef();
     const usernameRef = useRef();
     const [, dispatch] = useStoreContext();
 
     const handleSignup = (event) => {
         event.preventDefault();
+        // verify if password matches
+        if (passwordRef.current.value !== passwordConfirmRef.current.value){
+            setShowError(true);
+            setErrorMessage("The passwords entered do not match");
+            return
+        }
         const signupData = {
             email: emailRef.current.value,
             password: passwordRef.current.value,
@@ -56,6 +63,10 @@ function Signup() {
                         <Form.Group>
                             <Form.Label htmlFor="exampleInputPassword1">Password</Form.Label>
                             <Form.Control type="password" className="form-control" placeholder="Password" ref={passwordRef} />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label htmlFor="exampleInputPassword2">Confirm Password</Form.Label>
+                            <Form.Control type="password" className="form-control" placeholder="Password" ref={passwordConfirmRef} />
                         </Form.Group>
                         <Alert style={{ "display": showError ? "block" : "none" }} id="alert" className="alert alert-danger" role="alert">
                             <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>

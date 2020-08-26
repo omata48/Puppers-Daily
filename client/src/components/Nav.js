@@ -11,14 +11,16 @@ function NavbarMod(props) {
     const {logout} = props
 
     return (
-        <Navbar bg='dark' variant='dark' className='pb-3'>
+        <Navbar 
+        bg='dark' expand='sm' variant='dark' className='pb-3'
+        >
+            <Navbar.Brand>
+                <b>Welcome {!state.userLoggedIn ?'Guest!' :state.username+'!'}</b> &nbsp;&nbsp;&nbsp;
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls='basic-navbar-nav' />
             {!state.userLoggedIn ? (
-                // if the user is Logged out
-                <>
-                    <Navbar.Brand>
-                        <b>Welcome Guest!</b> &nbsp;&nbsp;&nbsp;
-                    </Navbar.Brand>
-                    <Nav variant='pills' className='mr-auto' >
+                <Navbar.Collapse id='basic-navbar-nav'>
+                    <Nav className='mr-auto' >
                         <Nav.Item >
                             <Link to="/login">
                                 <Nav.Link as="div">Login</Nav.Link>
@@ -30,14 +32,11 @@ function NavbarMod(props) {
                             </Link>
                         </Nav.Item>
                     </Nav>
-                </>
+                </Navbar.Collapse>
             ) : (
                 // If the user is Logged In
-                <>
-                    <Navbar.Brand>
-                        <b>Welcome {state.username}!</b> &nbsp;&nbsp;&nbsp;
-                    </Navbar.Brand>
-                    <Nav variant="pills" className='mr-auto'>
+                <Navbar.Collapse>
+                    <Nav >
                         <Nav.Item >
                             <Link to="/home">
                                 <Nav.Link as="div">Home</Nav.Link>
@@ -54,7 +53,7 @@ function NavbarMod(props) {
                             </Link>
                         </Nav.Item>
                     </Nav>
-                </>
+                </Navbar.Collapse>
                 )
             }
             

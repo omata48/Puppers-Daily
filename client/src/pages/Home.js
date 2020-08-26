@@ -13,7 +13,7 @@ function Home() {
         />
         <Container className='mb-3'>
             <Row className='justify-content-md-center'>
-                <Col sm={8}>
+                <Col sm={8} className='mb-3'>
                     <Card>
                         <Card.Header as="h1">Features!</Card.Header>
                         {/* Can turn this into a nav with tabs <Nav variant='tabs'> */}
@@ -43,7 +43,7 @@ function Home() {
                         </Card.Body>
                     </Card>
                 </Col>
-                <Col>
+                <Col className='mb-3'>
                     <Button variant='secondary' size='lg' href='/signup' block>
                         Sign up now
                     </Button>
