@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useContext } from "react";
-import { AUTH_SET_LOGGED_OUT, AUTH_SET_LOGGED_IN, NEW_USER_PET } from "./actions";
+import { AUTH_SET_LOGGED_OUT, AUTH_SET_LOGGED_IN, USER_PET } from "./actions";
 
 const StoreContext = createContext({
     userLoggedIn: false,
@@ -29,7 +29,7 @@ const reducer = (state, action) => {
                 username: "",
                 petInformation: []
             }
-        case NEW_USER_PET:
+        case USER_PET:
             return {
                 ...state,
                 petInformation: action.data.petInformation

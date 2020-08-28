@@ -17,6 +17,12 @@ export default {
     addPet: (petData) => {
         return axios.post("/api/pet", petData);
     },
+    removePet: (petId) => {
+        return axios.delete("/api/delete/"+petId);
+    },
+    updatePet: (petId, petData) => {
+        return axios.put('/api/update/'+petId, petData)
+    },
     getPets: () => {
         return axios.get("/api/pet_data");
     },

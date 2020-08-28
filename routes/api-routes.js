@@ -40,6 +40,30 @@ module.exports = function(app) {
     }).catch(err => res.status(401).json(err));
   });
 
+  // Route to delete a pet entry
+  app.delete('/api/delete/:id', function(req,res) {
+    db.Pet.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(results) {
+      res.json(results);
+    }).catch(err => res.status(204).json(err));
+  });
+
+  // Route to update a pet entry
+  app.put('/api/update/:id', function(req, res) {
+    db.Pet.update({
+      vetRecords: req.body.petInformation,
+    }, {
+      where: {
+        id: req.params.id
+      }
+    }).then(function(results) {
+      res.json(results);
+    }).catch(err => res.status(401).json(err));
+  });
+
   // Route for logging user out
   app.get("/logout", function(req, res) {
     req.logout();
