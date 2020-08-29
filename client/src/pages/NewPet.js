@@ -3,7 +3,7 @@ import { Container, Row, Col, Form, Alert, Button } from 'react-bootstrap';
 import API from '../utils/API';
 import useDebounce from "../utils/debounceHook";
 import { useStoreContext } from "../utils/GlobalStore";
-import { NEW_USER_PET } from "../utils/actions";
+import { USER_PET } from "../utils/actions";
 
 
 function NewPet(){
@@ -56,9 +56,10 @@ function NewPet(){
         API.addPet(petData)
             .then((petAdded) => {
                 console.log(petAdded)
+                // concat new pet to previous array
                 var joined = state.petInformation.concat(petAdded)
                 dispatch({
-                    type: NEW_USER_PET,
+                    type: USER_PET,
                     data: {
                         petInformation: joined
                     }
@@ -108,8 +109,8 @@ function NewPet(){
                             </datalist>
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label>Records</Form.Label>
-                            <Form.Control as="textarea" rows="3" placeholder="Records" ref={recordsRef} />
+                            <Form.Label>Notes</Form.Label>
+                            <Form.Control as="textarea" rows="3" placeholder="Notes" ref={recordsRef} />
                         </Form.Group>
                         {/* Alert for error */}
                         <Alert style={{ "display": showError ? "block" : "none" }} id="alert" className="alert alert-danger" role="alert">

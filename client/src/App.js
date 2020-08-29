@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Members from "./pages/Members";
 import NewPet from './pages/NewPet';
+import EditPet from './pages/EditPet';
 import Footer from './components/Footer';
 import { useStoreContext } from './utils/GlobalStore';
 import API from './utils/API';
@@ -76,6 +77,7 @@ function App() {
                                 </Route>
                                 <Route exact path="/members" component={Members} />
                                 <Route exact path="/members/add" component={NewPet} />
+                                <Route exact path="/members/edit" component={EditPet} />
                             </>
                             )
                     }

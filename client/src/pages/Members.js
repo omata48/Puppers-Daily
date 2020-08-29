@@ -4,17 +4,25 @@ import Hero from '../components/Hero'
 import { useStoreContext } from '../utils/GlobalStore';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import Food from '../utils/LocalStorage'
 import { Link } from "react-router-dom";
 import Moment from 'react-moment';
 import moment from 'moment';
 
 function Members() {
+  const currentDay = moment().format('L');
   const [state] = useStoreContext();
   const [show, setShow] = useState(false);
   const [food, setFood] = useState([]);
+  const [date, setDate] = useState(currentDay)
 
   const foodnameRef = useRef();
   const sizeRef = useRef();
+
+  useEffect(() => {
+    setDate(currentDay);
+    setFood(Food.getMealFed(date));
+  }, [])
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
@@ -26,17 +34,14 @@ function Members() {
         time: moment().format('LT')
       }
       var join = food.concat(fedItem)
-      console.log(join)
-      setFood(join)
+      setFood(join);
+      Food.setMealFed(date,join);
     }
     catch(err){
       console.log(err)
     }
   }
 
-  useEffect(() => {
-
-  }, [food])
 
   const { petInformation } = state;
 
@@ -95,14 +100,19 @@ function Members() {
             </Col>
           </Row>
         </TabContainer>
-        <Link to='/members/add'>
+        <Link to='/members/add' style={{textDecoration:'none'}}>
           <Button variant='outline-secondary' size='lg' block>
             Add a dog
           </Button>
         </Link>
-        <Button variant='outline-danger' size='lg' block>
-          Edit information
-        </Button>
+        {
+          petInformation.length > 0 &&
+          <Link to='/members/edit' style={{textDecoration:'none'}}>
+            <Button variant='outline-danger' size='lg' block>
+              Edit information
+            </Button>
+          </Link>
+        }
       </Col>
       <Col md={5} className='mb-3'>
         <Card>
@@ -127,31 +137,47 @@ function Members() {
       </Col>
     </Row>
     <Modal id='foodModal' show={show} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>Food time!</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Form.Group>
+          <Form.Label>Meal or Snack?</Form.Label>
+          <Form.Control as='select' ref={sizeRef}>
+            <option>Meal</option>
+            <option>Snack</option>
+          </Form.Control>
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Name of food:</Form.Label>
+          <Form.Control type='text' className='form-control' placeholder='Food Name' ref={foodnameRef} />
+        </Form.Group>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>
+          Close
+          </Button>
+        <Button variant="primary" onClick={handleFood}>
+          Save Changes
+          </Button>
+      </Modal.Footer>
+    </Modal>
+    {/* <Modal id='confirmDelete' show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Food time!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form.Group>
-            <Form.Label>Meal or Snack?</Form.Label>
-            <Form.Control as='select' ref={sizeRef}>
-              <option>Meal</option>
-              <option>Snack</option>
-            </Form.Control>
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Name of food:</Form.Label>
-            <Form.Control type='text' className='form-control' placeholder='Food Name' ref={foodnameRef}/>
-          </Form.Group>
+          <h1>Are you sure?</h1>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            No
           </Button>
           <Button variant="primary" onClick={handleFood}>
-            Save Changes
+            Yes
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal> */}
   </Container>
 }
 
