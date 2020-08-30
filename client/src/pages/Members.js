@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Container, Row, Col, Button, Card, Tab, TabContainer, Nav, Modal, Form, ListGroup } from 'react-bootstrap';
+import { Container, Row, Col, Button, Card, Tab, TabContainer, Nav, Modal, Form, ListGroup, Alert } from 'react-bootstrap';
 import Hero from '../components/Hero'
 import { useStoreContext } from '../utils/GlobalStore';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,7 +14,11 @@ function Members() {
   const [state] = useStoreContext();
   const [show, setShow] = useState(false);
   const [food, setFood] = useState([]);
-  const [date, setDate] = useState(currentDay)
+  const [foodIndexDeleting, setFoodIndexDeleting] = useState('');
+  const [foodError, setFoodError] = useState(false);
+  const [foodAdded, setFoodAdded] = useState(false);
+  const [confirm, setConfirm] = useState(false);
+  const [date, setDate] = useState(currentDay);
 
   const foodnameRef = useRef();
   const sizeRef = useRef();
@@ -22,12 +26,34 @@ function Members() {
   useEffect(() => {
     setDate(currentDay);
     setFood(Food.getMealFed(date));
-  }, [])
+  }, [currentDay,date])
 
-  const handleClose = () => setShow(false)
+  useEffect(() => {
+    
+  })
+
+  const handleClose = () => {
+    setShow(false);
+    setFoodAdded(false);
+    setFoodError(false);
+  }
+  const handleConfirmClose = () => {
+    setConfirm(false);
+  }
   const handleShow = () => setShow(true)
+  const handleConfirmShow = (event) => {
+    setFoodIndexDeleting(event.target.id)
+    setConfirm(true)
+  }
+
   const handleFood = () => {
     try{
+      if (foodnameRef.current.value.trim() === ''){
+        // alert empty string and return no add
+        setFoodError(true)
+        return
+      }
+      setFoodError(false)
       var fedItem = {
         size: (sizeRef.current.value).toLowerCase(),
         food: foodnameRef.current.value,
@@ -36,12 +62,23 @@ function Members() {
       var join = food.concat(fedItem)
       setFood(join);
       Food.setMealFed(date,join);
+      setFoodAdded(true)
     }
     catch(err){
       console.log(err)
     }
   }
 
+  const deleteFood = () => {
+    var copyMeals = [...food];
+    const newMeals = copyMeals.filter((meal,index) => {
+      return index !== parseInt(foodIndexDeleting)
+    })
+    console.log(newMeals)
+    Food.deleteMealFed(date,newMeals);
+    setFood(Food.getMealFed(date));
+    setConfirm(false);
+  }
 
   const { petInformation } = state;
 
@@ -116,15 +153,15 @@ function Members() {
       </Col>
       <Col md={5} className='mb-3'>
         <Card>
-          <Card.Header as='h3' className="text-center"><Moment format='dddd, MMMM Do YYYY'></Moment></Card.Header>
+          <Card.Header as='h2' className="text-center"><Moment format='dddd, MMMM Do YYYY'></Moment></Card.Header>
           <ListGroup>
           {
             food.length > 0
             ?
             food.map((fed,key) =>
               <ListGroup.Item key={key} className='text-align center'>
-                <p xs={9}>Fed {fed.size} of {fed.food} at {fed.time}</p>
-                <button xs={2} as='button' className='btn btn-danger'>
+                <span className='py-0 pl-0 pr-1 col-xs-8 col-sm-8 col-md-10 col-lg-10 col-xlg-10'>Fed {fed.size} of {fed.food} at {fed.time}</span>
+                <button id={key} className='col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xlg-2 btn btn-danger float-right' as='button' onClick={handleConfirmShow}>
                   <FontAwesomeIcon icon={faTrash} />
                 </button>
               </ListGroup.Item>
@@ -150,8 +187,16 @@ function Members() {
         </Form.Group>
         <Form.Group>
           <Form.Label>Name of food:</Form.Label>
-          <Form.Control type='text' className='form-control' placeholder='Food Name' ref={foodnameRef} />
+          <Form.Control type='text' className='form-control' placeholder='Food Name' ref={foodnameRef}/>
         </Form.Group>
+        <Alert style={{ "display": foodError ? "block" : "none" }} id="alert" className="alert alert-danger" role="alert">
+          <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          <span className="sr-only">Error:</span> <span className="msg">Name of food should not be empty</span>
+        </Alert>
+        <Alert style={{ "display": foodAdded ? "block" : "none" }} id="alert" className="alert alert-success" role="alert">
+          <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          <span className="sr-only">Success:</span> <span className="msg">Added food successfully!</span>
+        </Alert>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
@@ -162,22 +207,22 @@ function Members() {
           </Button>
       </Modal.Footer>
     </Modal>
-    {/* <Modal id='confirmDelete' show={show} onHide={handleClose}>
+    <Modal id='confirmDelete' show={confirm} onHide={handleConfirmClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Food time!</Modal.Title>
+          <Modal.Title>Delete Food Item</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h1>Are you sure?</h1>
+          <h3>Are you sure you want to delete?</h3>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={handleConfirmClose}>
             No
           </Button>
-          <Button variant="primary" onClick={handleFood}>
+          <Button variant="danger" onClick={deleteFood}>
             Yes
           </Button>
         </Modal.Footer>
-      </Modal> */}
+      </Modal>
   </Container>
 }
 

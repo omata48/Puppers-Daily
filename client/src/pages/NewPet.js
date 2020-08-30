@@ -9,6 +9,7 @@ import { USER_PET } from "../utils/actions";
 function NewPet(){
     const [state,dispatch] =  useStoreContext();
     const [showError, setShowError] = useState(false);
+    const [showSuccess, setShowSuccess] = useState(false);
     const [errorMessage,setErrorMessage] = useState("");
     const [breeds, setBreeds] = useState([]);
     const [search, setSearch] = useState("");
@@ -75,6 +76,10 @@ function NewPet(){
         ageRef.current.value = '';
         sexRef.current.value = '';
         recordsRef.current.value ='';
+        setShowSuccess(true)
+        setTimeout(() => {
+            setShowSuccess(false)
+        }, 3000)
     }
 
     return <div>
@@ -116,6 +121,11 @@ function NewPet(){
                         <Alert style={{ "display": showError ? "block" : "none" }} id="alert" className="alert alert-danger" role="alert">
                             <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                             <span className="sr-only">Error:</span> <span className="msg">{errorMessage}</span>
+                        </Alert>
+                        {/* Alert for success */}
+                        <Alert style={{ "display": showSuccess ? "block" : "none" }} id="alert" className="alert alert-success" role="alert">
+                            <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            <span className="sr-only">Success!</span> <span className="msg">A new dog joined your pack!</span>
                         </Alert>
                         <Button type="submit" variant='outline-primary'>Add Dog</Button>
                     </Form>

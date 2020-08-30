@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Container, Row, Col, Button, ListGroup, ListGroupItem } from 'react-bootstrap';
 import Hero from '../components/Hero';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBone } from '@fortawesome/free-solid-svg-icons'
+
 
 function Home() {
 
@@ -16,28 +19,31 @@ function Home() {
             <Row className='justify-content-md-center'>
                 <Col sm={8} className='mb-3'>
                     <Card>
-                        <Card.Header as="h1">Features!</Card.Header>
+                        <Card.Header className='text-center' as="h1"><FontAwesomeIcon icon={faBone} /> Features <FontAwesomeIcon icon={faBone} /></Card.Header>
                         {/* Can turn this into a nav with tabs <Nav variant='tabs'> */}
                         <Card.Body>
                             <ListGroup variant='flush'>
                                 <ListGroupItem>
-                                    <Card.Title>Keep Track of your dogs</Card.Title>
+                                    <Card.Title as='h2'>Keep Track of your dogs</Card.Title>
                                     <Card.Text>
-                                        Do you have multiple dogs that you want to have an online record for? Make an online profile to easily share your puppies with others!
-                                        Enter your pets name, breed, age, sex, and any notes about them to save to your account!
+                                        Do you have multiple dogs? Make each puppy an online profile to easily have all your dogs information in one place!
+                                        Information you can store are the:
+                                        {<ul>
+                                            <li>Name</li>
+                                            <li>Breed</li>
+                                            <li>Age</li>
+                                            <li>Sex</li>
+                                            <li>And any notes</li>
+                                        </ul>} All of this information will be saved to your personal account!
                                     </Card.Text>
                                 </ListGroupItem>
                                 <ListGroupItem>
-                                    <Card.Title>Dinner Time!!!</Card.Title>
+                                    <Card.Title as='h2'>Dinner Time!!!</Card.Title>
                                     <Card.Text>
-                                        With a busy life, do you forget if you have fed your dogs or how much you have fed them? Use this application in order to help with keeping track of at what time you fed your dogs today. 
-                                    </Card.Text>
-                                </ListGroupItem>
-                                <ListGroupItem>
-                                    <Card.Title>Track medical records</Card.Title>
-                                    <Card.Text>
-                                        If you are tired of having medical records scattered all over the house, this application will provide a secure location to keep the crucial information of these records.
-                                        Unsure when your puppy recived their last vaccine? If you keep a record of them on this site, they will always be available.
+                                        {<p>With a busy life, do you forget at what time you last fed your dogs? Is it time for a treat or a full dinner?</p>} 
+                                        {<p> Use this application in order to help with keeping track of at what time you fed your dogs today.  
+                                        Keep track of food given to them without worrying about having to remove meals given every day.</p>}  
+                                        {<p>If you add a meal by accident, you can always remove the food given to them with the click of a button.</p>}
                                     </Card.Text>
                                 </ListGroupItem>
                             </ListGroup>
