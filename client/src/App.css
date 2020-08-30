@@ -2,3 +2,41 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
+p {
+  font-size: 18px;
+}
+.nav-pills
+.nav-link.active{
+  color: #fff;
+  background-color: #78909C;
+}
+
+.nav-pills
+.nav-link{
+  color: #795548;
+}
+
+.nav-pills{
+  outline-style: solid;
+  outline-width: 2px;
+  outline-color: #F5F5F5;
+}
+
+a{
+  text-decoration: none
+}
+
+a:hover{
+  text-decoration: none;
+}
+
+.btn-outline-primary{
+  color: #2E7D32;
+  border-color: #2E7D32;
+}
+
+.btn-outline-primary:hover{
+  color: #fff;
+  background-color: #2E7D32;
+  border-color: #2E7D32;
+}

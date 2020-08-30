@@ -14,6 +14,8 @@ function EditPet(){
 
     const handleChange = event => {
         const nameChosen = event.target.value
+        // modify to check for other value of pet 
+        // --- current issue with pets that have the same name
         const idNow = petInformation.map(pet =>  {return pet.name}).indexOf(nameChosen);
         setcurrentPet({
             ...currentPet,
@@ -24,7 +26,7 @@ function EditPet(){
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const petId = petInformation[currentPet.index]
+        const petId = petInformation[currentPet.index].id
         const petData = {
             petInformation: notesRef.current.value
         };
@@ -41,7 +43,7 @@ function EditPet(){
 
     const handleDelete = (event) => {
         event.preventDefault();
-        const petId = currentPet.index
+        const petId = petInformation[currentPet.index].id
         API.removePet(petId)
             .then(() => {
                 window.location.assign('/members')

@@ -10,21 +10,21 @@ function Home() {
 
     return (
         <>
-        <Hero title="Puppy Time" 
+        <Hero title="Your Daily Dose of Dogs" 
             // URL="https://placedog.net/640?random" 
             URL="https://placedog.net/640" 
             height={'75vh'} 
         />
         <Container className='mb-3'>
             <Row className='justify-content-md-center'>
-                <Col sm={8} className='mb-3'>
+                <Col sm={9} className='mb-3'>
                     <Card>
                         <Card.Header className='text-center' as="h1"><FontAwesomeIcon icon={faBone} /> Features <FontAwesomeIcon icon={faBone} /></Card.Header>
                         {/* Can turn this into a nav with tabs <Nav variant='tabs'> */}
                         <Card.Body>
                             <ListGroup variant='flush'>
                                 <ListGroupItem>
-                                    <Card.Title as='h2'>Keep Track of your dogs</Card.Title>
+                                    <Card.Title as='h2'>Keep track of your dogs</Card.Title>
                                     <Card.Text>
                                         Do you have multiple dogs? Make each puppy an online profile to easily have all your dogs information in one place!
                                         Information you can store are the:
@@ -50,7 +50,7 @@ function Home() {
                         </Card.Body>
                     </Card>
                 </Col>
-                <Col sm={4}>
+                <Col sm={3}>
                     <Link to='/signup' style={{textDecoration:'none'}}>
                         <Button className='mb-3' variant='secondary' size='lg' block>
                             Sign up now

@@ -137,15 +137,15 @@ function Members() {
             </Col>
           </Row>
         </TabContainer>
-        <Link to='/members/add' style={{textDecoration:'none'}}>
+        <Link to='/members/add'>
           <Button variant='outline-secondary' size='lg' block>
             Add a dog
           </Button>
         </Link>
         {
           petInformation.length > 0 &&
-          <Link to='/members/edit' style={{textDecoration:'none'}}>
-            <Button variant='outline-danger' size='lg' block>
+          <Link to='/members/edit'>
+            <Button className='mt-2' variant='outline-info' size='lg' block>
               Edit information
             </Button>
           </Link>

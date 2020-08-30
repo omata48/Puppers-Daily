@@ -50,7 +50,7 @@ function Signup() {
         <Container>
             <Row>
                 <Col md={{ span: 6, offset: 3 }} className='pt-5'>
-                    <h2>Sign Up Form</h2>
+                    <h2>Lets make your account</h2>
                     <Form className="signup" onSubmit={handleSignup}>
                         <Form.Group>
                             <Form.Label htmlFor="exampleInputEmail1">Email address</Form.Label>
