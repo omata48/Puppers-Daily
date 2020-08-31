@@ -9,6 +9,8 @@
 [SITE](https://puppers-daily.herokuapp.com/) |
 [GIT REPO](https://github.com/omata48/Puppers-Daily)
 
+![Home Page](./images/home.png)
+
 >With multiple dogs, it would be nice to have a central place to keep your pack’s information with a daily usefulness.  
 
 Most dog applications on the market focus on finding lost dogs or tracking health information of pets. This is an application focused on the daily interactions with your dogs.
@@ -77,6 +79,7 @@ Contributions welcomed by forking repo and submitting a pull request with any fe
 * Heroku
 
 ## Features
+![members page](./images/members.png)
 * Users have personalized profiles
 * Add new dogs
 * Edit notes about their dogs
