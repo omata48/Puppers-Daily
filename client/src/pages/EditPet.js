@@ -54,10 +54,10 @@ function EditPet(){
             })
     }
 
-    const test = (event) => {
-        event.preventDefault();
-        console.log(currentPet.name)
-    }
+    // const test = (event) => {
+    //     event.preventDefault();
+    //     console.log(currentPet.name)
+    // }
 
     return <div>
         <Container>
@@ -100,7 +100,7 @@ function EditPet(){
                         </Alert>
                         <Button type="submit" variant='outline-primary'>Edit Dog</Button>
                         <Button variant='outline-danger' onClick={handleDelete}>Delete Dog</Button>
-                        <Button as='div' variant='outline-warning' onClick={test}>Test</Button>
+                        {/* <Button as='div' variant='outline-warning' onClick={test}>Test</Button> */}
                     </Form>
                     <br />
                     <a href='/members'>
