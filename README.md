@@ -1,32 +1,90 @@
-# Project 2 Template
+# Online/Offline Budget Trackers
 
-## BEFORE YOU BEGIN 
-1. Run `db/schema.sql` to create your database
-2. Make sure to create a `.env` file and copy the contents of `.env.example` into it.
-3. In the `.env` file replace the ???? for SESSION_SECRET and set your db credentials in LOCALDB_URL
-it should look something like this
-```
-SESSION_SECRET=SomethingBesidesKeyboardCat
-LOCALDB_URL=mysql://root:dbpassword@localhost:3306/Project2Dev
-```
-**NOTE** Do *not* check in your `.env` file into source control, it is particular to *your* environment.
+[![license-badge](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![SITE](https://img.shields.io/badge/%E2%86%91_Deploy_to-Heroku-7056bf.svg)](https://puppers-daily.herokuapp.com/)
+[![GIT REPO](https://img.shields.io/github/last-commit/omata48/PWA-HW)](https://github.com/omata48/Puppers-Daily)  
 
-## Scripts
-### Install
+
+## Description
+[SITE](https://puppers-daily.herokuapp.com/) |
+[GIT REPO](https://github.com/omata48/Puppers-Daily)
+
+>With multiple dogs, it would be nice to have a central place to keep your pack’s information with a daily usefulness.  
+
+Most dog applications on the market focus on finding lost dogs or tracking health information of pets. This is an application focused on the daily interactions with your dogs.
+
+This application can also be installed by users on a mobile device by following the instructions under [Installation](#Installation).
+
+## Table of contents
+[Installation](#Installation)  
+[Usage](#Usage)  
+[License](#License)  
+[Contributing](#Contributing)  
+[Technologies Used](#Technologies%20Used)  
+[Features](#Features)  
+[Questions](#Questions)  
+
+## Installation
+Install initial detabase from db/schema.sql and dependencies from package.json
+
     npm install
-### Run (production)
+
+To install web app on mobile devices:
+
+* iOs:
+
+  * 1. Navigate to https://puppers-daily.herokuapp.com/ with Safari.
+
+  * 2. Tap the Share button in Safari.
+
+  * 3. Tap the icon labeled Add to Home Screen.
+
+  * 4. Tap Add in the upper-right corner.
+
+  * 5. Rename your App if you want, then tap Add in the upper-right corner.
+
+* Android:
+
+  * 1. Navigate to https://puppers-daily.herokuapp.com/ with Chrome.
+
+  * 2. Tap the menu button in the upper right corner of Chrome.
+
+  * 3. Tap the icon labeled Add to Home Screen.
+
+  * 4. Rename your App if you want, then tap Add below the promp.
+
+
+## Usage
+Start the application on your local server
+
     npm start
-### Run (dev)
-    npm run watch
-### Tests (includes linting)
-    npm test
-### Linting by itself (only detects errors)
-    npm run lint
-### Autofix linting errors where pssible (Note: this will not necessarily fix all of them)
-    npm run fix
 
-    
-### Associated Links (requires you to be logged into github):
-[Project Requirements](https://github.com/the-Coding-Boot-Camp-at-UT/UTA-AUS-FSF-FT-06-2020-U-C/blob/master/01-Class-Content/15-Project-2/02-Homework/README.md
+## License
+  
+Licensed under the [MIT license](LICENSE).
 
-[Deployment w/ Sequelize](https://github.com/the-Coding-Boot-Camp-at-UT/UTA-AUS-FSF-FT-06-2020-U-C/blob/master/01-Class-Content/14-Full-Stack/04-Supplemental/SequelizeHerokuDeploymentProcess.md)
+## Contributing
+Contributions welcomed by forking repo and submitting a pull request with any feature requests
+
+## Technologies Used
+* React.js
+* mySQL
+* React-Bootstrap
+* Sequalize
+* Express
+* Node.js
+* CSS
+* Heroku
+
+## Features
+* Users have personalized profiles
+* Add new dogs
+* Edit notes about their dogs
+* Delete dogs from their list
+* Add time fed
+* Delete feeding instance
+
+## Questions
+
+Link to my [GitHub Profile](https://github.com/omata48)  
+For additional questions feel free to email omata48@outlook.com
